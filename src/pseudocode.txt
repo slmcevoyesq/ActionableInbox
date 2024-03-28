@@ -1,0 +1,50 @@
+1. BEGIN Program
+
+2. CONNECT to Gmail's email server with account credentials
+    - Use email address and password or OAuth for authentication
+
+3. RETRIEVE all emails from every mailbox (Inbox, Sent, etc.)
+    FOR each mailbox IN Gmail account
+        GET all emails
+        FOR each email IN mailbox
+            STORE email in a database file
+                - Include details such as sender, receiver, subject, date, and body
+        END FOR
+    END FOR
+
+4. TOKENIZE all email information in the database file
+    FOR each email IN database file
+        TOKENIZE email details (sender, receiver, subject, date, body)
+            - Split text into individual tokens (words, phrases, symbols)
+    END FOR
+
+5. CHUNKING -- Group adjacent tokens into chunks based on predefined patterns (e.g., noun phrases, verb phrases)
+    FOR each email IN database file
+        FOR each tokenized detail (e.g., subject, body) IN email
+            GROUP tokens into chunks
+                - Use patterns like noun phrases or verb phrases
+        END FOR
+    END FOR
+
+6. VECTORIZATION -- Convert tokens and chunks into vectors
+    FOR each email IN database file
+        FOR each chunk AND token IN email
+            CONVERT chunk/token into vector
+                - Use techniques such as TF-IDF, word embeddings, or one-hot encoding
+        END FOR
+    END FOR
+
+7. QUERYING the Vectorized Email Database for a "To-Do" List
+    - DEFINE a query to identify tasks for "Scott McEvoy" or "me"
+    - PROCESS emails to extract tasks, deadlines, and urgency sentiments
+        FOR each email IN vectorized database
+            IDENTIFY tasks directed at "Scott McEvoy" or "me"
+            EXTRACT deadlines and urgency sentiment using NLP techniques
+            STORE tasks with their deadlines and urgency levels
+        END FOR
+    - PRIORITIZE tasks based on deadlines, urgency sentiment, and other factors
+        SORT tasks by deadline (sooner to later)
+        ADJUST priority based on urgency sentiment and importance
+    - CREATE a "To-Do" list based on prioritized tasks
+    - DISPLAY or SEND the "To-Do" list to "Scott McEvoy" or designate for action
+
